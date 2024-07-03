@@ -14,6 +14,17 @@ console.log(getComputerChoice())
 function getHumanChoice() {
     let userInput = prompt(" Enter either Rock, Paper or Scissors").toLowerCase();
     console.log(userInput);
+
+    if(userInput === "rock"){
+        return "Rock";
+       } else if (userInput === "paper"){
+        return "Paper";
+       } else if(userInput === "scissors"){
+        return "Scissors";
+       } else {
+    console.log(" Enter a valid option");
+    return getHumanChoice();
+    }
 }
 getHumanChoice()
 
