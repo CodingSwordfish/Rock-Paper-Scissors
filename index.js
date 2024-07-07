@@ -57,3 +57,6 @@ console.log(winner); // Log the value of the winner variable
  
  playRound(humanSelection, computerSelection);
  
+function playGame {
+   
+}
