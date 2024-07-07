@@ -1,6 +1,6 @@
 function getComputerChoice() {
    let randomNumber = Math.random() * 3; 
-   console.log(randomNumber);
+  
    if (randomNumber < 1) {
       console.log("Computer chose: Rock");
       return "Rock";
@@ -17,13 +17,16 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     let userInput = prompt(" Enter either Rock, Paper or Scissors").toLowerCase();
-    console.log(userInput);
+    
 
     if(userInput === "rock"){
+      console.log("You chose: Rock")
         return "Rock";
        } else if (userInput === "paper"){
+         console.log("You chose: Paper");
         return "Paper";
        } else if(userInput === "scissors"){
+         console.log("You chose: Scissors");
         return "Scissors";
        } else {
     console.log(" Enter a valid option");
