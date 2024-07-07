@@ -45,18 +45,27 @@ function getComputerChoice() {
  
    if (winner.includes("You win")) {
      humanScore++;
-     console.log(`You have ${humanScore} point(s)`);
+     console.log(`You have ${humanScore} point(s)
+     Computer has ${computerScore} point(s)
+     Both have tied ${tieScore} time(s)
+     START NEW ROUND`);
    } else if (winner.includes("You lose")) {
      computerScore++;
-     console.log(`Computer has ${computerScore} point(s)`);
+     console.log(`Computer has ${computerScore} point(s)
+     You have ${humanScore} point(s)
+     Both have tied ${tieScore} time(s)
+     START NEW ROUND`);
    }else if(winner.includes("It's a tie!")){
       tieScore++;
-      console.log( `Both have tied ${tieScore} time(s)`)
+      console.log( `Both have tied ${tieScore} time(s)
+      You have ${humanScore} point(s)
+      Computer has ${computerScore} point(s)
+      START NEW ROUND`)
    }
  }
  
  function playGame(roundsPlayed=0) {
-   if (roundsPlayed >= 5) {
+   if (roundsPlayed === 5) {
      // Declare winner based on final scores
      if (humanScore > computerScore) {
        console.log("You won the game!");
