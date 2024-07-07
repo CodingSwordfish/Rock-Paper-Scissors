@@ -48,15 +48,24 @@ function playRound(humanChoice,computerChoice){
      : "You lose. ";
 
 console.log(winner); // Log the value of the winner variable
+if (winner.includes("You win")){
+   humanScore++;
+   console.log(`You have ${humanScore} point(s)`);
+}else if(winner.includes("You lose")){
+   computerScore++;
+   console.log(`Computer has ${computerScore} point(s)`);
 }
 
 
- 
- const humanSelection = getHumanChoice();
- const computerSelection = getComputerChoice();
- 
- playRound(humanSelection, computerSelection);
- 
-function playGame {
-   
+
+
 }
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
+ 
+
+ 
+ function playGame (){
+
+ }
