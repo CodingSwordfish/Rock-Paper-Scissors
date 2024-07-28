@@ -1,94 +1,142 @@
+let rockButton = document.querySelector("#rock");
+let paperButton = document.querySelector("#paper");
+let scissorsButton = document.querySelector("#scissors");
+let parentButton = document.querySelector("#parentButton");
+let results = document.querySelector("#results")
+let para = document.querySelector("#para");
+
+// GETTING COMPUTER CHOICE
 function getComputerChoice() {
    let randomNumber = Math.random() * 3;
  
    if (randomNumber < 1) {
-     console.log("Computer chose: Rock");
+     para.textContent += `Computer chose: Rock`;
      return "Rock";
    } else if (randomNumber < 2) {
-     console.log("Computer chose: Paper");
+    para.textContent += `Computer chose: Paper`;
      return "Paper";
    } else {
-     console.log("Computer chose: Scissors");
+    para.textContent += `Computer chose: Scissors`;
      return "Scissors";
    }
  }
  
- function getHumanChoice() {
-   let userInput = prompt("Enter either Rock, Paper or Scissors").toLowerCase();
- 
-   if (userInput === "rock") {
-     console.log("You chose: Rock");
-     return "Rock";
-   } else if (userInput === "paper") {
-     console.log("You chose: Paper");
-     return "Paper";
-   } else if (userInput === "scissors") {
-     console.log("You chose: Scissors");
-     return "Scissors";
-   } else {
-     console.log("Enter a valid option");
-     return getHumanChoice(); // Recursive call for invalid input (consider a loop or limit for retries)
-   }
- }
+ // BUTTONS AND EVENT DELEGATION
+  
+parentButton.addEventListener("click",(e)=>{
+  let target = e.target;
+  if(target.id === "rock"){
+    function getHumanChoice(){
+     
+      para.textContent += `You chose: Rock!`;
+return "Rock";
+    }
+    
+    let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
+}
+
+
+else if(target.id === "paper"){
+  function getHumanChoice(){
+    para.textContent += "You chose: Paper!"
+return "Paper"
+  }
+  let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
+}
+
+else if (target.id === "scissors"){
+  function getHumanChoice(){
+    console.log("You chose: Scissors!")
+return "Scissors"
+  }
+  let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
+}
+});
+  
+
+  
+    
+
+
+
+
+
+  
+ // PLAYROUND
  
  function playRound(humanChoice, computerChoice) {
    const winner =
      (humanChoice === "Paper" && computerChoice === "Rock") ||
      (humanChoice === "Scissors" && computerChoice === "Paper") ||
      (humanChoice === "Rock" && computerChoice === "Scissors")
-       ? `You win! ${humanChoice} beats ${computerChoice}`
+       ? `You win! ${humanChoice} beats ${computerChoice} \n `
        : humanChoice === computerChoice
-         ? "It's a tie!"
-         : "You lose. ";
+         ? "It's a tie! \n"
+         : "You lose. \n";
  
-   console.log(winner);
+   results.textContent = `${winner}`;
  
    if (winner.includes("You win")) {
-     humanScore++;
-     console.log(`You have ${humanScore} point(s)
-     Computer has ${computerScore} point(s)
-     Both have tied ${tieScore} time(s)
-     START NEW ROUND`);
-   } else if (winner.includes("You lose")) {
-     computerScore++;
-     console.log(`Computer has ${computerScore} point(s)
-     You have ${humanScore} point(s)
-     Both have tied ${tieScore} time(s)
-     START NEW ROUND`);
-   }else if(winner.includes("It's a tie!")){
-      tieScore++;
-      console.log( `Both have tied ${tieScore} time(s)
-      You have ${humanScore} point(s)
-      Computer has ${computerScore} point(s)
-      START NEW ROUND`)
-   }
+    humanScore++;
+    results.textContent += `You have ${humanScore} point(s)\n`;
+    results.textContent += `Computer has ${computerScore} point(s)\n`;
+    results.textContent += `Both have tied ${tieScore} time(s)\n`;
+    results.textContent += `START NEW ROUND\n`;
+} else if (winner.includes("You lose")) {
+    computerScore++;
+    results.textContent += `Computer has ${computerScore} point(s)\n`;
+    results.textContent += `You have ${humanScore} point(s)\n`;
+    results.textContent += `Both have tied ${tieScore} time(s)\n`;
+    results.textContent += `START NEW ROUND\n`;
+} else if (winner.includes("It's a tie!")) {
+    tieScore++;
+    results.textContent += `Both have tied ${tieScore} time(s)\n`;
+    results.textContent += `You have ${humanScore} point(s)\n`;
+    results.textContent += `Computer has ${computerScore} point(s)\n`;
+    results.textContent += `START NEW ROUND\n`;
+}
  }
  
- function playGame(roundsPlayed=0) {
-   if (roundsPlayed === 5) {
-     // Declare winner based on final scores
-     if (humanScore > computerScore) {
-       console.log("You won the game!");
-     } else if (computerScore > humanScore) {
-       console.log("Computer won the game!");
-     } else {
-       console.log("It's a tie overall!");
-     }
-     return; // Exit the function if all rounds are played
-   }
+
+
  
-   let humanSelection = getHumanChoice();
-   let computerSelection = getComputerChoice();
-   playRound(humanSelection, computerSelection);
+// function playGame() {
+//   //  if (roundsPlayed === 5) {
+//   //    // Declare winner based on final scores
+//   //    if (humanScore > computerScore) {
+//   //      console.log("You won the game!");
+//   //    } else if (computerScore > humanScore) {
+//   //      console.log("Computer won the game!");
+//   //    } else {
+//   //      console.log("It's a tie overall!");
+//   //    }
+//   //    return; // Exit the function if all rounds are played
+//   //  }
  
-   // Call itself recursively for the next round
-   playGame(++roundsPlayed);
- }
+//   //  let humanSelection = getHumanChoice();
+//   //  let computerSelection = getComputerChoice();
+//   //  playRound(humanSelection, computerSelection);
+ 
+//    // Call itself recursively for the next round
+
+// let humanSelection = getHumanChoice();
+// let computerSelection = getComputerChoice();
+// playRound(humanSelection, computerSelection);
+
+// }
  
  let humanScore = 0;
  let computerScore = 0;
  let tieScore = 0;
+
+
+//  playGame()
  
- playGame();
  
  
